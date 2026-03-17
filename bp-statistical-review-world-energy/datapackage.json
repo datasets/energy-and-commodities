@@ -1,0 +1,544 @@
+{
+  "name": "bp-statistical-review-world-energy",
+  "title": "BP Statistical Review of World Energy",
+  "description": "Annual flagship energy statistics covering production, consumption, and prices by country and fuel type, drawn from the BP Statistical Review of World Energy 2020 edition (data through 2019). Covers oil, gas, coal, nuclear, hydro, and renewables across 60+ countries and regions, with price series for crude oil, natural gas, and coal going back to the 1970s–80s.",
+  "homepage": "https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html",
+  "version": "2020",
+  "status": "active",
+  "licenses": [
+    {
+      "name": "other",
+      "title": "BP Statistical Review — free to use with attribution",
+      "path": "https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html"
+    }
+  ],
+  "sources": [
+    {
+      "name": "BP Statistical Review of World Energy 2020",
+      "path": "https://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html",
+      "title": "BP Statistical Review of World Energy 2020 (69th edition) — data through 2019"
+    }
+  ],
+  "resources": [
+    {
+      "name": "primary-energy-consumption",
+      "path": "data/primary-energy-consumption.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Total primary energy consumption by country and year, 1965–2019. Includes all energy sources. Long format: one row per country per year.",
+      "schema": {
+        "fields": [
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Country or regional aggregate (e.g. Total North America, Total World)"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "consumption_ej",
+            "type": "number",
+            "description": "Primary energy consumption in exajoules (EJ)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "oil-production",
+      "path": "data/oil-production.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Crude oil and NGL production by country and year, 1965–2019. Long format: one row per country per year.",
+      "schema": {
+        "fields": [
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Country or regional aggregate"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "production_kbbl_day",
+            "type": "number",
+            "description": "Oil production in thousands of barrels per day"
+          }
+        ]
+      }
+    },
+    {
+      "name": "oil-consumption",
+      "path": "data/oil-consumption.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Oil consumption by country and year, 1965–2019. Long format: one row per country per year.",
+      "schema": {
+        "fields": [
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Country or regional aggregate"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "consumption_kbbl_day",
+            "type": "number",
+            "description": "Oil consumption in thousands of barrels per day"
+          }
+        ]
+      }
+    },
+    {
+      "name": "gas-production",
+      "path": "data/gas-production.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Natural gas production by country and year, 1970–2019. Long format: one row per country per year.",
+      "schema": {
+        "fields": [
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Country or regional aggregate"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "production_bcm",
+            "type": "number",
+            "description": "Natural gas production in billion cubic metres (Bcm)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "gas-consumption",
+      "path": "data/gas-consumption.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Natural gas consumption by country and year, 1965–2019. Long format: one row per country per year.",
+      "schema": {
+        "fields": [
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Country or regional aggregate"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "consumption_bcm",
+            "type": "number",
+            "description": "Natural gas consumption in billion cubic metres (Bcm)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "coal-production",
+      "path": "data/coal-production.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Coal production by country and year, 1981–2019. Long format: one row per country per year.",
+      "schema": {
+        "fields": [
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Country or regional aggregate"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "production_mt",
+            "type": "number",
+            "description": "Coal production in million tonnes"
+          }
+        ]
+      }
+    },
+    {
+      "name": "coal-consumption",
+      "path": "data/coal-consumption.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Coal consumption by country and year, 1965–2019. Long format: one row per country per year.",
+      "schema": {
+        "fields": [
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Country or regional aggregate"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "consumption_ej",
+            "type": "number",
+            "description": "Coal consumption in exajoules (EJ)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "nuclear-generation",
+      "path": "data/nuclear-generation.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Nuclear electricity generation by country and year, 1965–2019. Long format: one row per country per year.",
+      "schema": {
+        "fields": [
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Country or regional aggregate"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "generation_twh",
+            "type": "number",
+            "description": "Nuclear electricity generation in terawatt-hours (TWh)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "hydro-generation",
+      "path": "data/hydro-generation.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Hydroelectric power generation by country and year, 1965–2019. Long format: one row per country per year.",
+      "schema": {
+        "fields": [
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Country or regional aggregate"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "generation_twh",
+            "type": "number",
+            "description": "Hydroelectric generation in terawatt-hours (TWh)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "renewables-consumption",
+      "path": "data/renewables-consumption.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Renewables (wind, solar, geothermal, biomass, other) energy consumption by country and year, 1965–2019. Excludes hydro. Long format: one row per country per year.",
+      "schema": {
+        "fields": [
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Country or regional aggregate"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "consumption_ej",
+            "type": "number",
+            "description": "Renewables consumption in exajoules (EJ)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "co2-emissions",
+      "path": "data/co2-emissions.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Carbon dioxide emissions from energy use by country and year, 1965–2019. Long format: one row per country per year.",
+      "schema": {
+        "fields": [
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Country or regional aggregate"
+          },
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "emissions_mt_co2",
+            "type": "number",
+            "description": "CO₂ emissions from energy use in million tonnes of CO₂"
+          }
+        ]
+      }
+    },
+    {
+      "name": "oil-spot-prices",
+      "path": "data/oil-spot-prices.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Annual average spot prices for key crude oil benchmarks, 1972–2019. Includes Dubai, Brent, Nigerian Forcados, and West Texas Intermediate (WTI).",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "dubai_usd_bbl",
+            "type": "number",
+            "description": "Dubai crude spot price (USD per barrel)"
+          },
+          {
+            "name": "brent_usd_bbl",
+            "type": "number",
+            "description": "Brent crude spot price (USD per barrel)"
+          },
+          {
+            "name": "nigerian_forcados_usd_bbl",
+            "type": "number",
+            "description": "Nigerian Forcados crude spot price (USD per barrel)"
+          },
+          {
+            "name": "wti_usd_bbl",
+            "type": "number",
+            "description": "West Texas Intermediate (WTI) crude spot price (USD per barrel)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "gas-prices",
+      "path": "data/gas-prices.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Annual average natural gas prices at key international hubs, 1984–2019. Includes Japan LNG CIF, Japan Korea Marker (JKM), German import price, UK NBP, Netherlands TTF, and US Henry Hub.",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "lng_japan_cif_usd_mmbtu",
+            "type": "number",
+            "description": "Japan LNG CIF price (USD per million Btu)"
+          },
+          {
+            "name": "jkm_usd_mmbtu",
+            "type": "number",
+            "description": "Japan Korea Marker (JKM) price (USD per million Btu)"
+          },
+          {
+            "name": "german_import_usd_mmbtu",
+            "type": "number",
+            "description": "Average German import natural gas price (USD per million Btu)"
+          },
+          {
+            "name": "uk_nbp_usd_mmbtu",
+            "type": "number",
+            "description": "UK NBP (National Balancing Point) gas price (USD per million Btu)"
+          },
+          {
+            "name": "netherlands_ttf_usd_mmbtu",
+            "type": "number",
+            "description": "Netherlands TTF gas hub price (USD per million Btu)"
+          },
+          {
+            "name": "henry_hub_usd_mmbtu",
+            "type": "number",
+            "description": "US Henry Hub natural gas price (USD per million Btu)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "coal-prices",
+      "path": "data/coal-prices.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Annual average coal prices at key international markets, 1987–2019. Includes Northwest Europe marker, US Appalachian, Japan steam CIF, China Qinhuangdao, and Japan coking coal CIF.",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "northwest_europe_usd_tonne",
+            "type": "number",
+            "description": "Northwest Europe steam coal marker price (USD per tonne)"
+          },
+          {
+            "name": "us_appalachian_usd_tonne",
+            "type": "number",
+            "description": "US Central Appalachian coal spot price index (USD per tonne)"
+          },
+          {
+            "name": "japan_steam_cif_usd_tonne",
+            "type": "number",
+            "description": "Japan steam coal spot CIF price (USD per tonne)"
+          },
+          {
+            "name": "china_qinhuangdao_usd_tonne",
+            "type": "number",
+            "description": "China Qinhuangdao steam coal spot price (USD per tonne)"
+          },
+          {
+            "name": "japan_coking_cif_usd_tonne",
+            "type": "number",
+            "description": "Japan coking coal import CIF price (USD per tonne)"
+          }
+        ]
+      }
+    }
+  ],
+  "views": [
+    {
+      "name": "primary-energy-world",
+      "title": "World Primary Energy Consumption (1965–2019)",
+      "resources": ["primary-energy-consumption"],
+      "specType": "vega-lite",
+      "spec": {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "transform": [{"filter": "datum.country == 'Total World'"}],
+        "mark": {"type": "area", "color": "#2196F3"},
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "axis": {"format": "d"}
+          },
+          "y": {
+            "field": "consumption_ej",
+            "type": "quantitative",
+            "title": "Primary Energy Consumption (EJ)"
+          },
+          "tooltip": [
+            {"field": "year", "type": "quantitative", "title": "Year"},
+            {"field": "consumption_ej", "type": "quantitative", "title": "Consumption (EJ)", "format": ".1f"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "crude-oil-prices",
+      "title": "Crude Oil Spot Prices (1972–2019)",
+      "resources": ["oil-spot-prices"],
+      "specType": "vega-lite",
+      "spec": {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "transform": [
+          {
+            "fold": ["brent_usd_bbl", "wti_usd_bbl", "dubai_usd_bbl"],
+            "as": ["benchmark", "price_usd_bbl"]
+          }
+        ],
+        "mark": "line",
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "axis": {"format": "d"}
+          },
+          "y": {
+            "field": "price_usd_bbl",
+            "type": "quantitative",
+            "title": "Price (USD/bbl)"
+          },
+          "color": {
+            "field": "benchmark",
+            "type": "nominal",
+            "title": "Benchmark",
+            "scale": {
+              "domain": ["brent_usd_bbl", "wti_usd_bbl", "dubai_usd_bbl"],
+              "range": ["#1565C0", "#C62828", "#F57C00"]
+            }
+          },
+          "tooltip": [
+            {"field": "year", "type": "quantitative", "title": "Year"},
+            {"field": "benchmark", "type": "nominal", "title": "Benchmark"},
+            {"field": "price_usd_bbl", "type": "quantitative", "title": "Price (USD/bbl)", "format": ".2f"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "co2-top-emitters",
+      "title": "CO₂ Emissions — Top Emitters (1965–2019)",
+      "resources": ["co2-emissions"],
+      "specType": "vega-lite",
+      "spec": {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "transform": [
+          {
+            "filter": {"field": "country", "oneOf": ["US", "China", "Russia", "India", "Japan", "Germany"]}
+          }
+        ],
+        "mark": "line",
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "axis": {"format": "d"}
+          },
+          "y": {
+            "field": "emissions_mt_co2",
+            "type": "quantitative",
+            "title": "CO₂ Emissions (million tonnes)"
+          },
+          "color": {
+            "field": "country",
+            "type": "nominal",
+            "title": "Country"
+          },
+          "tooltip": [
+            {"field": "country", "type": "nominal", "title": "Country"},
+            {"field": "year", "type": "quantitative", "title": "Year"},
+            {"field": "emissions_mt_co2", "type": "quantitative", "title": "CO₂ (Mt)", "format": ".0f"}
+          ]
+        }
+      }
+    }
+  ]
+}
