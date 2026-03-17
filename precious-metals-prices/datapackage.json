@@ -1,0 +1,125 @@
+{
+  "name": "precious-metals-prices",
+  "title": "Precious Metals Prices",
+  "description": "Monthly price series for silver, platinum, and palladium in USD per troy ounce, from 1968 to present. Complements the existing gold-prices dataset. Each metal has an ISO 4217 currency code: XAG (silver), XPT (platinum), XPD (palladium). Source: Stooq (derived from London fix / spot market data).",
+  "homepage": "https://datahub.io/energy-and-commodities/precious-metals-prices",
+  "version": "2026-03",
+  "status": "active",
+  "licenses": [
+    {
+      "name": "ODC-PDDL",
+      "path": "https://opendatacommons.org/licenses/pddl/1.0/",
+      "title": "Open Data Commons Public Domain Dedication and License (PDDL)"
+    }
+  ],
+  "sources": [
+    {
+      "name": "Stooq",
+      "path": "https://stooq.com",
+      "title": "Stooq — XAG/USD, XPT/USD, XPD/USD monthly historical data"
+    }
+  ],
+  "resources": [
+    {
+      "name": "silver",
+      "path": "data/silver.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Monthly silver prices in USD per troy ounce (XAG/USD), 1968–present. Month-end closing prices.",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "date",
+            "format": "%Y-%m-%d",
+            "description": "Last calendar day of the month"
+          },
+          {
+            "name": "price",
+            "type": "number",
+            "description": "Silver price in USD per troy ounce"
+          }
+        ]
+      }
+    },
+    {
+      "name": "platinum",
+      "path": "data/platinum.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Monthly platinum prices in USD per troy ounce (XPT/USD), 1968–present. Month-end closing prices.",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "date",
+            "format": "%Y-%m-%d",
+            "description": "Last calendar day of the month"
+          },
+          {
+            "name": "price",
+            "type": "number",
+            "description": "Platinum price in USD per troy ounce"
+          }
+        ]
+      }
+    },
+    {
+      "name": "palladium",
+      "path": "data/palladium.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Monthly palladium prices in USD per troy ounce (XPD/USD), 1968–present. Month-end closing prices.",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "date",
+            "format": "%Y-%m-%d",
+            "description": "Last calendar day of the month"
+          },
+          {
+            "name": "price",
+            "type": "number",
+            "description": "Palladium price in USD per troy ounce"
+          }
+        ]
+      }
+    }
+  ],
+  "views": [
+    {
+      "name": "silver-price",
+      "title": "Silver Price (USD/troy oz)",
+      "resources": ["silver"],
+      "specType": "simple",
+      "spec": {
+        "type": "line",
+        "group": "date",
+        "series": ["price"]
+      }
+    },
+    {
+      "name": "platinum-price",
+      "title": "Platinum Price (USD/troy oz)",
+      "resources": ["platinum"],
+      "specType": "simple",
+      "spec": {
+        "type": "line",
+        "group": "date",
+        "series": ["price"]
+      }
+    },
+    {
+      "name": "palladium-price",
+      "title": "Palladium Price (USD/troy oz)",
+      "resources": ["palladium"],
+      "specType": "simple",
+      "spec": {
+        "type": "line",
+        "group": "date",
+        "series": ["price"]
+      }
+    }
+  ]
+}
