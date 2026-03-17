@@ -1,0 +1,186 @@
+{
+  "name": "us-primary-energy-consumption-historical",
+  "title": "US Primary Energy Consumption 1635–2000",
+  "description": "Estimated primary energy consumption in the United States from 1635 to 2000. Covers 365 years of US energy history: from wood and water power in the colonial era, through the coal-dominated industrial revolution, to the rise of petroleum and natural gas in the 20th century. Pre-1949 data covers selected years only; annual data begins in 1949. All values in quadrillion Btu (quad Btu).",
+  "homepage": "https://www.eia.gov/totalenergy/data/annual/",
+  "version": "1.0.0",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "odc-pddl",
+      "path": "https://opendatacommons.org/licenses/pddl/",
+      "title": "Open Data Commons Public Domain Dedication and License (PDDL)"
+    }
+  ],
+  "sources": [
+    {
+      "name": "EIA Annual Energy Review — Table E1",
+      "path": "https://www.eia.gov/totalenergy/data/annual/showtext.php?t=ptb1601",
+      "title": "US Energy Information Administration: Estimated Primary Energy Consumption in the United States, Selected Years, 1635–1945 (Quadrillion Btu)"
+    },
+    {
+      "name": "EIA Annual Energy Review — Table 1.1",
+      "path": "https://www.eia.gov/totalenergy/data/annual/showtext.php?t=ptb0101",
+      "title": "US Energy Information Administration: Primary Energy Overview, 1949–2011 (Quadrillion Btu)"
+    },
+    {
+      "name": "EIA Monthly Energy Review",
+      "path": "https://www.eia.gov/totalenergy/data/monthly/",
+      "title": "US Energy Information Administration: Monthly Energy Review — Primary Energy"
+    }
+  ],
+  "resources": [
+    {
+      "name": "primary-energy-consumption",
+      "path": "data/primary-energy-consumption.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "title": "US Primary Energy Consumption 1635–2000",
+      "description": "Total US primary energy consumption by year, 1635–2000. Pre-1949 data covers selected years at irregular intervals (decennial 1635–1845, quinquennial 1850–1945). Annual data from 1949. Gap exists for 1946–1948 (bridging period between historical and modern EIA series). Values in quadrillion Btu (1 quad = 10^15 Btu = 1.055 exajoules).",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation"
+          },
+          {
+            "name": "total_quad_btu",
+            "type": "number",
+            "description": "Total primary energy consumption in quadrillion British thermal units (quad Btu). Includes all sources: coal, petroleum, natural gas, nuclear, hydroelectric, biomass, and other renewables."
+          },
+          {
+            "name": "notes",
+            "type": "string",
+            "description": "Data notes. 'selected year' indicates the pre-1949 series where only specific benchmark years are available."
+          }
+        ]
+      }
+    },
+    {
+      "name": "primary-energy-by-source",
+      "path": "data/primary-energy-by-source.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "title": "US Primary Energy Consumption by Source 1850–1945",
+      "description": "Breakdown of US primary energy consumption by fuel source for selected years 1850–1945. Shows the transition from wood and water power to coal, petroleum, and natural gas. Values in quadrillion Btu.",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Year of observation (selected years, at 5-year intervals)"
+          },
+          {
+            "name": "coal_quad_btu",
+            "type": "number",
+            "description": "Coal consumption in quadrillion Btu"
+          },
+          {
+            "name": "natural_gas_quad_btu",
+            "type": "number",
+            "description": "Natural gas consumption in quadrillion Btu"
+          },
+          {
+            "name": "petroleum_quad_btu",
+            "type": "number",
+            "description": "Petroleum consumption in quadrillion Btu"
+          },
+          {
+            "name": "hydro_quad_btu",
+            "type": "number",
+            "description": "Hydroelectric power in quadrillion Btu"
+          },
+          {
+            "name": "biomass_quad_btu",
+            "type": "number",
+            "description": "Wood and biomass consumption in quadrillion Btu (pre-1949 series covers fuelwood only)"
+          },
+          {
+            "name": "total_quad_btu",
+            "type": "number",
+            "description": "Total primary energy consumption in quadrillion Btu"
+          }
+        ]
+      }
+    }
+  ],
+  "views": [
+    {
+      "name": "total-energy-consumption",
+      "title": "US Primary Energy Consumption (1635–2000)",
+      "resources": ["primary-energy-consumption"],
+      "specType": "vega-lite",
+      "spec": {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "mark": {"type": "line", "color": "#e74c3c"},
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "axis": {"format": "d"}
+          },
+          "y": {
+            "field": "total_quad_btu",
+            "type": "quantitative",
+            "title": "Energy Consumption (quad Btu)"
+          },
+          "tooltip": [
+            {"field": "year", "type": "quantitative", "title": "Year"},
+            {"field": "total_quad_btu", "type": "quantitative", "title": "Total (quad Btu)", "format": ".2f"},
+            {"field": "notes", "type": "nominal", "title": "Notes"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "energy-by-source-historical",
+      "title": "US Energy by Fuel Source (1850–1945)",
+      "resources": ["primary-energy-by-source"],
+      "specType": "vega-lite",
+      "spec": {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "transform": [
+          {
+            "fold": ["coal_quad_btu", "natural_gas_quad_btu", "petroleum_quad_btu", "hydro_quad_btu", "biomass_quad_btu"],
+            "as": ["source", "quad_btu"]
+          },
+          {"filter": "datum.quad_btu != null && datum.quad_btu !== ''"}
+        ],
+        "mark": {"type": "area"},
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "axis": {"format": "d"}
+          },
+          "y": {
+            "field": "quad_btu",
+            "type": "quantitative",
+            "title": "Energy Consumption (quad Btu)",
+            "stack": "zero"
+          },
+          "color": {
+            "field": "source",
+            "type": "nominal",
+            "title": "Source",
+            "scale": {
+              "domain": ["coal_quad_btu", "natural_gas_quad_btu", "petroleum_quad_btu", "hydro_quad_btu", "biomass_quad_btu"],
+              "range": ["#4a4a4a", "#f39c12", "#8e44ad", "#2980b9", "#27ae60"]
+            },
+            "legend": {
+              "labelExpr": "{'coal_quad_btu': 'Coal', 'natural_gas_quad_btu': 'Natural Gas', 'petroleum_quad_btu': 'Petroleum', 'hydro_quad_btu': 'Hydroelectric', 'biomass_quad_btu': 'Wood / Biomass'}[datum.label]"
+            }
+          },
+          "tooltip": [
+            {"field": "year", "type": "quantitative", "title": "Year"},
+            {"field": "source", "type": "nominal", "title": "Source"},
+            {"field": "quad_btu", "type": "quantitative", "title": "Consumption (quad Btu)", "format": ".3f"}
+          ]
+        }
+      }
+    }
+  ]
+}
